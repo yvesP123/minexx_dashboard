@@ -74,7 +74,7 @@ const Mines = ({ language,country }) => {
 
     useEffect(() => {
         fetch()
-        changeTitle(`Mines | Minexx`)
+        changeTitle(`${t('Mines')} | Minexx`)
     }, [language,country]);
 
     const filter = e => {

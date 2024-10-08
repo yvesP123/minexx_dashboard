@@ -5,36 +5,40 @@ import { Dropdown } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { ThemeContext } from '../../../context/ThemeContext';
-import { useOutletContext } from 'react-router-dom';
 
 const translations = {
   en: {
     dashboard: "Dashboard",
-    EN: "En",
-    FR: "Fr",
+    EN: "English (EN)",
+    FR: "French (FR)",
     switchTo: "Switch to",
     Logout: "Logout",
     changeCountry: "Change Country"
   },
   fr: {
     dashboard: "Tableau de bord",
-    EN: "EN",
-    FR: "Fr",
+    EN: "English (EN)",
+    FR: "Français (FR)",
     switchTo: "Passer à",
     Logout: "Déconnexion",
     changeCountry: "Changer de Pays"
   }
 };
 
-const Header = ({ onNote, toggle, onProfile, onNotification, onClick, onLanguageChange, onCountryChange }) => {
-  const { title } = useContext(ThemeContext);
+const countryLanguageDefaults = {
+  'Rwanda': 'en',
+  'Ghana': 'en',
+  'DRC': 'fr',
+  'France': 'fr',
+  'Gabon': 'fr'
+};
+
+const Header = ({ onLanguageChange, onCountryChange }) => {
   const [user] = useState(JSON.parse(localStorage.getItem(`_authUsr`)));
   const [access, setAccess] = useState('');
   const [view, setView] = useState(localStorage.getItem(`_dash`) || '');
-  const [lang, setLang] = useState(localStorage.getItem(`_lang`) || `en`);
   const [country, setCountry] = useState(localStorage.getItem(`_country`) || 'Rwanda');
-
-  const navigate = useNavigate();
+  const [lang, setLang] = useState(localStorage.getItem(`_userLang`) || localStorage.getItem(`_lang`) || countryLanguageDefaults[country] || 'en');
 
   const countries = {
     'Rwanda': 'https://flagcdn.com/w320/rw.png',
@@ -46,7 +50,7 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onClick, onLanguage
 
   useEffect(() => {
     updateAccessAndView(country);
-    updateLanguageBasedOnCountry(country);
+    handleCountryLanguageChange(country);
   }, [country]);
 
   const updateAccessAndView = (selectedCountry) => {
@@ -78,39 +82,40 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onClick, onLanguage
     localStorage.setItem(`_dash`, newView);
   };
 
-  const updateLanguageBasedOnCountry = (selectedCountry) => {
-    let newLang;
-    switch (selectedCountry) {
-      case 'Rwanda':
-      case 'Ghana':
-        newLang = 'en';
-        break;
-      case 'DRC':
-      case 'France':
-      case 'Gabon':
-        newLang = 'fr';
-        break;
-      default:
-        newLang = 'en';
+  const handleCountryLanguageChange = (selectedCountry) => {
+    const defaultLang = countryLanguageDefaults[selectedCountry];
+    const userLang = localStorage.getItem(`_userLang`);
+    
+    // If user hasn't manually set a language preference, use country default
+    if (!userLang) {
+      setLang(defaultLang);
+      localStorage.setItem(`_lang`, defaultLang);
+      onLanguageChange(defaultLang);
     }
-    setLang(newLang);
-    localStorage.setItem(`_lang`, newLang);
-    onLanguageChange(newLang);
   };
 
-  const changeLanguage = () => {
-    const newLang = lang === `en` ? `fr` : `en`;
+  const changeLanguage = (newLang) => {
     setLang(newLang);
+    localStorage.setItem(`_userLang`, newLang); // Store user's manual language preference
     localStorage.setItem(`_lang`, newLang);
     onLanguageChange(newLang);
+    window.location.reload();
   }
 
   const changeCountry = (selectedCountry) => {
     setCountry(selectedCountry);
     localStorage.setItem(`_country`, selectedCountry);
     updateAccessAndView(selectedCountry);
-    updateLanguageBasedOnCountry(selectedCountry);
+    
+    // Reset user language preference when changing country
+    localStorage.removeItem(`_userLang`);
+    
+    const defaultLang = countryLanguageDefaults[selectedCountry];
+    setLang(defaultLang);
+    localStorage.setItem(`_lang`, defaultLang);
+    onLanguageChange(defaultLang);
     onCountryChange(selectedCountry);
+    
     window.location.reload();
   }
 
@@ -123,10 +128,7 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onClick, onLanguage
     }
   }
 
-  // Function to get translated text
   const t = (key) => translations[lang][key] || key;
-
-  // Get the list of other countries (excluding the currently selected one)
   const otherCountries = Object.keys(countries).filter(c => c !== country);
 
   return (
@@ -135,13 +137,9 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onClick, onLanguage
         <nav className="navbar navbar-expand">
           <div className="collapse navbar-collapse justify-content-between">
             <div className="header-left">
-              <div
-                className="dashboard_bar"
-                style={{ textTransform: "capitalize" }}
-              >
+              <div className="dashboard_bar" style={{ textTransform: "capitalize" }}>
                 {t('dashboard')} - {view.toUpperCase()}
               </div>
-              <div id="google_translate_element"></div>
             </div> 	
             <ul className="navbar-nav header-right">
               <Dropdown as="li" className="nav-item header-profile">
@@ -167,9 +165,12 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onClick, onLanguage
                   <i className="fa fa-caret-down ms-2" aria-hidden="true"></i>
                 </Dropdown.Toggle>
                 <Dropdown.Menu align="right" className="mt-2">
-                  <Link to="" onClick={changeLanguage} className="dropdown-item ai-icon">
-                    <span className="ms-2">{t(lang === 'en' ? 'FR' : 'EN')}</span>
-                  </Link>
+                  <Dropdown.Item onClick={() => changeLanguage('en')} className="dropdown-item ai-icon">
+                    <span className="ms-2">{t('EN')}</span>
+                  </Dropdown.Item>
+                  <Dropdown.Item onClick={() => changeLanguage('fr')} className="dropdown-item ai-icon">
+                    <span className="ms-2">{t('FR')}</span>
+                  </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
               <Dropdown as="li" className="nav-item header-profile">
@@ -180,7 +181,7 @@ const Header = ({ onNote, toggle, onProfile, onNotification, onClick, onLanguage
                   </div>
                 </Dropdown.Toggle>
                 <Dropdown.Menu align="right" className="mt-2">
-                  { access === 'both' && (
+                  {access === 'both' && (
                     <Link to="/" onClick={changeDashboard} className="dropdown-item ai-icon">
                       <FontAwesomeIcon icon={icon({name: 'arrow-right-arrow-left'})} />
                       <span className="ms-2">{t('switchTo')} {view === 'gold' ? '3Ts' : 'Gold'}</span>

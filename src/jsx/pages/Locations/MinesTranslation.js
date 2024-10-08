@@ -2,7 +2,7 @@ export const translations = {
     en: {
        
         Dashboard:"Dashbaord",
-        Mines :"Minex",
+        Mines :"Mines",
         Search :"Search",
         nomine:"There are no mine sites associated with",
         BasicInfo:"Basic Info",

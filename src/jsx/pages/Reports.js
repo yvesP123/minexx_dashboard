@@ -434,7 +434,7 @@ const Reports = ({language,country}) => {
 
     useEffect(() => {
         setData(document.querySelectorAll("#report_wrapper tbody tr"));
-        changeTitle(`Reports | Minexx`)
+        changeTitle(`${t('Report')} | Minexx`)
         loadReport()
         loadMonthlyData();
         loadMonthlyPurchase();
@@ -442,6 +442,7 @@ const Reports = ({language,country}) => {
             loadCompanies()
         }
     }, [type, company,language,country]);
+    
     const loadMonthlyData = () => {
 
         let normalizedCountry = country.trim();
@@ -470,7 +471,7 @@ const Reports = ({language,country}) => {
                   });
     
                 console.log('Monthly data:', {  
-                    cassiterite:response.data.cassiterite.company[normalizedCountry] ,
+                    cassiterite:response.data.cassiterite.company[normalizedCountry].monthly ,
                    
                 });
     
@@ -480,10 +481,12 @@ const Reports = ({language,country}) => {
                     if (err.response.code === 403) {
                         dispatch(Logout(navigate));
                     } else {
-                        toast.warn(err.response.message);
+                        console.log(err.response.message);
+                      //  toast.warn(err.response.message);
                     }
                 } catch (e) {
-                    toast.error(err.message);
+                    console.log(err.message);
+                   // toast.error(err.message);
                 }
             });
     };
@@ -525,10 +528,10 @@ const Reports = ({language,country}) => {
                     if (err.response.code === 403) {
                         dispatch(Logout(navigate));
                     } else {
-                        toast.warn(err.response.message);
+                        //toast.warn(err.response.message);
                     }
                 } catch (e) {
-                    toast.error(err.message);
+                  //  toast.error(err.message);
                 }
             });
     };
@@ -1670,28 +1673,28 @@ const chartOptions_Purchase = {
                                                     <tr>
                                                         <th></th>
                                                         <th className="text-center text-dark">
-                                                            Production Weight (Kg)
+                                                            {t("ProductionWeight")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Business Location
+                                                        {t("BusinessLocation")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Name of RMB Representative
+                                                        {t("NameOfRMBRepresentative")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Traceability Agent
+                                                        {t("TraceabilityAgent")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Name of Operator Representative
+                                                        {t("NameOfOperatorRepresentative")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Number of Bags
+                                                        {t("NumberOfBags")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Total Weight (Kg)
+                                                        {t("TotalWeight")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Note
+                                                        {t("Note")}
                                                         </th>
                                                     </tr>
                                                 </thead>
@@ -1752,45 +1755,45 @@ const chartOptions_Purchase = {
                                             <Table bordered striped hover responsive size='sm'>
                                                 <thead>
                                                     <tr>
-                                                        <th>Tag Number</th>
+                                                        <th>{t("TagNumber")}</th>
                                                         <th className="text-center text-dark">
-                                                            Weight (Kg)
+                                                        {t("Weight")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Tunnel/Pit Number or Name
+                                                        {t("TunnelPitNumberOrName")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Production/Mining Date
+                                                        {t("ProductionMiningDate")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Miner Name
+                                                        {t("MinerName")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Transporter Name
+                                                        {t("TransporterName")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            RMB Representative at Mine Site
+                                                        {t("RMBRepresentativeAtMineSite")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Security Officer Name
+                                                        {t("SecurityOfficerName")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Estimated concentrate %
+                                                        {t("EstimatedConcentratePercentage")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Color of The Bag/Drum Package
+                                                        {t("ColorOfTheBagDrumPackage")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Transport Mode
+                                                        {t("TransportMode")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Transport Itinerary
+                                                        {t("TransportItinerary")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Time
+                                                        {t("Time")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Production ID
+                                                        {t("ProductionID")}
                                                         </th>
                                                     </tr>
                                                 </thead>
@@ -1869,88 +1872,88 @@ const chartOptions_Purchase = {
                                                         <th>
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Date
+                                                            {t("Date")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Business Location
+                                                        {t("BusinessLocation")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            RMB Representative
+                                                        {t("RMBRepresentative")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Traceability Agent
+                                                        {t("TraceabilityAgent")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Operator Representative
+                                                        {t("OperatorRepresentative")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Mineral Type
+                                                        {t("MineralType")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Number of Input Bags
+                                                        {t("NumberOfInputBags")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Total Input Weight (kg)
+                                                        {t("TotalInputWeight")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Number of Output Bags
+                                                        {t("NumberOfOutputBags")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Total Output Weight(kg)
+                                                        {t("TotalOutputWeight")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Tag Number
+                                                        {t("TagNumber")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Tagging Date and Time
+                                                        {t("TaggingDateTime")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Grade (%)
+                                                        {t("Grade")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Processing Weight (kg)
+                                                        {t("ProcessingWeight")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Note
+                                                        {t("Note")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Name of mine supplier
+                                                        {t("NameOfMineSupplier")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Presence of Alex Stuart International (ASI)
+                                                        {t("PresenceOfASI")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Laboratory
+                                                        {t("Laboratory")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Certificate
+                                                        {t("Certificate")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Pricing (USD)
+                                                        {t("PricingUSD")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            LME
+                                                        {t("LME")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            TC
+                                                        {t("TC")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Price per Ta (%)
+                                                        {t("PricePerTaPercentage")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Unit Price
+                                                        {t("UnitPrice")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Total Price
+                                                        {t("TotalPrice")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Payment Method
+                                                        {t("PaymentMethod")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Security Officer Name
+                                                        {t("SecurityOfficerName")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Lot Number
+                                                        {t("LotNumber")}
                                                         </th>
                                                     </tr>
                                                 </thead>
@@ -2040,36 +2043,36 @@ const chartOptions_Purchase = {
                                             <Table bordered striped hover responsive size='sm'>
                                                 <thead>
                                                     <tr>
-                                                        <th>Tag Number</th>
+                                                        <th>{t("TagNumber")}</th>
                                                         <th className="text-center text-dark">
-                                                            Weight (Kg)
+                                                        {t("Weight")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Processing ID
+                                                        {t("ProcessingID")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Production/Mining Date
+                                                        {t("ProductionMiningDate")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            RMB Representative at Mine Site
+                                                        {t("RMBRepresentativeAtMineSite")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Security Officer Name
+                                                        {t("SecurityOfficerName")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Time
+                                                        {t("Time")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Storage Container
+                                                        {t("StorageContainer")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Color of the Package/Container
+                                                        {t("ColorOfThePackageContainer")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Mineral Type
+                                                        {t("MineralType")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Grade (%)
+                                                        {t("Grade")}
                                                         </th>
                                                     </tr>
                                                 </thead>
@@ -2190,27 +2193,27 @@ const chartOptions_Purchase = {
                                             <Table bordered striped hover responsive size='sm'>
                                                 <thead>
                                                     <tr>
-                                                        <th>Drum Number</th>
+                                                        <th>{t("DrumNumber")}</th>
                                                         <th className="text-center text-dark">
-                                                            Gross Weight
+                                                            {t("GrossWeight")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Net Weight 
+                                                        {t("NetWeight")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            ITSCI Tag Number
+                                                        {t("ITSCITagNumber")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Drum/Bag Color
+                                                        {t("DrumBagColor")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Grade (%) 
+                                                        {t("Grade")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Blending ID
+                                                        {t("BlendingID")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            ASI Tag Number
+                                                        {t("ASITagNumber")}
                                                         </th>
                                                     </tr>
                                                 </thead>
@@ -2328,70 +2331,70 @@ const chartOptions_Purchase = {
                                                             {t("Date")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Mineral Type
+                                                            {t("MineralType")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Grade
+                                                        {t("Grade")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Net Weight (kg)
+                                                        {t("NetWeightKg")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Gross Weight (kg)
+                                                        {t("GrossWeightKg")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Exportation ID
+                                                        {t("ExportationID")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            RMB Representative
+                                                        {t("RMBRepresentative")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Exporter Representative
+                                                        {t("ExporterRepresentative")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Traceability Agent
+                                                        {t("TraceabilityAgent")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Destination
+                                                        {t("Destination")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Itinerary
+                                                        {t("Itinerary")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Shipment Number
+                                                        {t("ShipmentNumber")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Export Certificate Number
+                                                        {t("ExportCertificateNumber")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            RRA certificate Number
+                                                        {t("RRACertificateNumber")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Export value (USD)
+                                                        {t("ExportValueUSD")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Transporter
+                                                        {t("Transporter")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            ID Number of the driver
+                                                        {t("IDNumberOfDriver")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Truck Plate Number - Front
+                                                        {t("TruckPlateNumberFront")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Truck Plate Number - Back
+                                                        {t("TruckPlateNumberBack")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Number of tags
+                                                        {t("NumberOfTags")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Total Gross Weight(kg)
+                                                        {t("TotalGrossWeightKg")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Total Net Weight(kg)
+                                                        {t("TotalNetWeightKg")}
                                                         </th>
                                                         <th className="text-center text-dark">
-                                                            Attachments
+                                                        {t("Attachments")}
                                                         </th>
                                                     </tr>
                                                 </thead>

@@ -43,7 +43,7 @@ const JobieNav = ({ title, onClick: ClickToAddEvent, onClick2, onClick3, onCount
             country={country}
          />
          <ChatBox onClick={() => onClick("chatbox")} toggle={toggle} />
-      </Fragment>
+      </Fragment>  
    );
 };
 

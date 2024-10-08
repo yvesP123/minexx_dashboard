@@ -13,6 +13,7 @@ import { toast } from 'react-toastify';
 import { translations } from './Hometranslations';
 import { LanguageContext, LanguageProvider } from './LanguageContext';
 
+
 const Doughnutchart = loadable(() =>
   pMinDelay(import("./../Karciz/Dashboard/Doughnutchart"), 1000)
 );
