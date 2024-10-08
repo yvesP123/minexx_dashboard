@@ -11,7 +11,7 @@ export const translations = {
         Mineral:"Mineral",
         Note:"Note",
     
-        Assessments:"Évaluations",
+        Assessments:"Assessments",
         AssessmentStartDate :"Assessment Start Date ",	
         AssessmentEndDate:"Assessment End Date",
         AssessmentType:"Assessment Type",	
