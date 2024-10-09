@@ -10,7 +10,7 @@ const AssessmentsTable = ({ assessments, headers,language}) => {
     document.querySelectorAll("#allreview tbody tr")
   );
   const navigate = useNavigate()
-  localStorage.removeItem('assessment')
+  localStorage.removeItem('assessment') 
   const sort = 6;
   const activePag = useRef(0);
   const midpoint = Math.ceil(headers.length / 2);
@@ -196,7 +196,7 @@ const AssessmentsTable = ({ assessments, headers,language}) => {
 
             <tbody>
               {assessments.length === 0 ? <tr>
-                <td className="pa-5 text-center font-w200" colSpan={5}>There are no assessments to display.</td>
+                <td className="pa-5 text-center font-w200" colSpan={5}>{t("There are no assessments to display.")}</td>
               </tr>
               : assessments.map( (doc, i) => <tr key={i} role="row" className="odd">
                 <td>
@@ -221,11 +221,11 @@ const AssessmentsTable = ({ assessments, headers,language}) => {
 
           <div className="d-sm-flex text-center justify-content-between align-items-center mt-3">
             <div className="dataTables_info">
-              Showing {activePag.current * sort + 1} to{" "}
+              {t("Showing")} {activePag.current * sort + 1} {t("To")}{" "}
               {data.length > (activePag.current + 1) * sort
                 ? (activePag.current + 1) * sort
                 : data.length}{" "}
-              of {data.length} entries
+              {t("Of")} {data.length} {t("Entries")}
             </div>
             <div
               className="dataTables_paginate paging_simple_numbers"
@@ -238,7 +238,7 @@ const AssessmentsTable = ({ assessments, headers,language}) => {
                   activePag.current > 0 && onClick(activePag.current - 1)
                 }
               >
-                Previous
+                {t("Previous")}
               </Link>
               <span>
                 {paggination.map((number, i) => (
@@ -263,7 +263,7 @@ const AssessmentsTable = ({ assessments, headers,language}) => {
                   onClick(activePag.current + 1)
                 }
               >
-                Next
+               {t("Next")}
               </Link>
             </div>
           </div>

@@ -181,7 +181,7 @@ const Markup = (props) => {
 	  { url: 'mine-sites', component: <MineSites/> },
 	  { url: 'compliance', component: <Compliance/> },
 	  { url: 'locations', component: <Locations/> },
-	  { url: 'assessment', component: <Assessment/> },
+	  { url: 'assessment', component: <Assessment key={language} language={language} country={country}/> },
 	  { url: 'assessments', component: <Assessments/> },
 	  { url: 'villages', component: <Villages/> },
 	  { url: 'miners', component: <Miners/> },

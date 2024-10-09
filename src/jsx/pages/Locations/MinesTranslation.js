@@ -24,8 +24,14 @@ export const translations = {
         NoPictures:"No Pictures",
         Therearenopictures:"There are no pictures to display",
         Videos:"Videos" ,
-        Therearenovideos:"There are no videos to display"
-        
+        Therearenovideos:"There are no videos to display",
+        "There are no assessments to display.": "There are no assessments to display.",
+        Showing: "Showing",
+        To: "to",
+        Of: "of",
+        Entries: "entries",
+        Previous: "previous",
+        Next: "next",
 
        
     },
@@ -53,7 +59,14 @@ export const translations = {
         NoPictures :"Pas d'images",
         Therearenopictures :"Il n'y a pas d'images à afficher pour le moment.",
         Videos :"Vidéos",
-        Therearenovideos:"Il n'y a pas encore de vidéos à afficher."
+        Therearenovideos:"Il n'y a pas encore de vidéos à afficher.",
+         "There are no assessments to display.": "Il n'y a aucune évaluation à afficher.",
+         Showing: "Affichage de",
+        To: "à",
+        Of: "de",
+        Entries: "entrées",
+        Previous: "précédent",
+        Next: "suivant",
 
 
         

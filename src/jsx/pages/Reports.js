@@ -591,13 +591,23 @@ const chartOptions = {
     },
     xaxis: {
         categories: [
-            'January', 'February', 'March', 'April', 'May', 'June',
-            'July', 'August', 'September', 'October', 'November', 'December'
+            t('January'), 
+            t('February'), 
+            t('March'), 
+            t('April'), 
+            t('May'), 
+            t('June'),
+            t('July'), 
+            t('August'), 
+            t('September'), 
+            t('October'), 
+            t('November'), 
+            t('December')
         ],
     },
     yaxis: {
         title: {
-            text: 'MTD Actuals (TONS)',
+            text: t('MTDActuals'),
         },
         labels: {
             formatter: function (value) {
@@ -646,7 +656,7 @@ const chartOptions = {
     //chart For Balance in Country
     const chartSeries_Balance = [
         {
-            name: 'With RMR (TONS)',
+            name: t('WithRMR'),
             data: [
                 ((balance.cassiterite.rmr || 0) / 1000).toFixed(2),
                 ((balance.coltan.rmr || 0) / 1000).toFixed(2),
@@ -656,7 +666,7 @@ const chartOptions = {
             
         },
         {
-            name: 'With Minexx (TONS)',
+            name: t('WithMinexx'),
             data: [
                 ((balance.cassiterite.minexx || 0)/ 1000).toFixed(2),
                 ((balance.coltan.minexx || 0)/ 1000).toFixed(2),
@@ -664,7 +674,7 @@ const chartOptions = {
             ],
         },
         {
-            name: 'Pending Shipment (TONS)',
+            name: t('PendingShipment'),
             data: [
                 ((balance.cassiterite.pending || 0) /  1000).toFixed(2),
                 ((balance.coltan.pending || 0 )/ 1000).toFixed(2),
@@ -672,7 +682,7 @@ const chartOptions = {
             ],
         },
         {
-            name: 'Shipped (TONS)',
+            name: t('Shipped'),
             data: [
                 ((balance.cassiterite.shipped || 0) / 1000).toFixed(2),
                 ((balance.coltan.shipped || 0 )/ 1000).toFixed(2),
@@ -680,7 +690,7 @@ const chartOptions = {
             ],
         },
         {
-            name: 'With Buyer (SOLD)',
+            name: t('WithBuyer'),
             data: [
                 ((balance.cassiterite.buyer || 0) / 1000).toFixed(2),
                 ((balance.coltan.buyer || 0 )/ 1000).toFixed(2),
@@ -716,7 +726,7 @@ const chartOptions = {
         },
         yaxis: {
             title: {
-                text: 'TONS / Percentage',
+                text: t('Percentage'),
             },
             labels: {
                 formatter: function (value) {
@@ -806,13 +816,23 @@ const chartOptions_Purchase = {
     },
     xaxis: {
         categories: [
-            'January', 'February', 'March', 'April', 'May', 'June',
-            'July', 'August', 'September', 'October', 'November', 'December'
+            t('January'), 
+            t('February'), 
+            t('March'), 
+            t('April'), 
+            t('May'), 
+            t('June'),
+            t('July'), 
+            t('August'), 
+            t('September'), 
+            t('October'), 
+            t('November'), 
+            t('December')
         ],
     },
     yaxis: {
         title: {
-            text: 'Total Amount Piad($)',
+            text: t('TotalAmountPaid'),
         },
         labels: {
             formatter: function (value) {
@@ -959,11 +979,11 @@ const chartOptions_Purchase = {
                                     </table>
                                     <div className="d-sm-flex text-center justify-content-between align-items-center mt-3 mb-3">
                                         <div className="dataTables_info">
-                                            Showing {activePag.current * sort + 1} to{" "}
+                                        {t("Showing")} {activePag.current * sort + 1} {t("To")}{" "}
                                             {data.length > (activePag.current + 1) * sort
                                                 ? (activePag.current + 1) * sort
                                                 : data.length}{" "}
-                                            of {data.length} entries
+                                            {t("Of")} {data.length} {t("Entries")}
                                         </div>
                                         <div
                                             className="dataTables_paginate paging_simple_numbers mb-0"
@@ -977,7 +997,7 @@ const chartOptions_Purchase = {
                                                     onClick(activePag.current - 1)
                                                 }
                                             >
-                                                Previous
+                                                {t("Previous")}
                                             </Link>
                                             <Link
                                                 className="paginate_button next"
@@ -989,7 +1009,7 @@ const chartOptions_Purchase = {
                                                     }
                                                 }
                                             >
-                                                Next
+                                                {t("Next")}
                                             </Link>
                                         </div>
                                     </div>
@@ -1714,17 +1734,22 @@ const chartOptions_Purchase = {
                                                     }
                                                     {
                                                         trace.production.length === 0 ? <tr>
-                                                            <td colSpan={9}>The selected company does not have any production to show.</td>
+                                                            <td colSpan={9}>{t('NoProduction')}</td>
                                                         </tr> : <tr></tr>
                                                     }
                                                 </tbody>
                                             </Table> : <Table bordered striped hover responsive size='sm'>
                                                 <thead>
-                                                    <tr>
-                                                        { trace.production?.header?.map(h=><th className="text-center text-dark">
-                                                            {h}
-                                                        </th>) }
-                                                    </tr>
+                                                <tr>
+                                                {trace.production?.header?.map(h => (
+                                                    <th 
+                                                        className="text-center text-dark"
+                                                        key={h} // Added key for React list rendering
+                                                    >
+                                                        {t(h)}
+                                                    </th>
+                                                ))}
+                                            </tr>
                                                 </thead>
                                                 <tbody>
                                                     {
@@ -1818,18 +1843,18 @@ const chartOptions_Purchase = {
                                                     }
                                                     {
                                                         trace?.bags.length === 0 ? <tr>
-                                                            <td colSpan={14}>The selected company does not have any produced bags to show.</td>
+                                                            <td colSpan={14}>{t("NoSelected")}</td>
                                                         </tr> : <tr></tr>
                                                     }
                                                 </tbody>
                                             </Table>
                                             <div className="d-sm-flex text-center justify-content-between align-items-center mt-3">
                                                 <div className="dataTables_info">
-                                                Showing {(bagsPage-1) * sort + 1} to{" "}
+                                                {t("Showing")} {(bagsPage-1) * sort + 1} {t("To")}{" "}
                                                 {trace?.bags.length > bagsPage * sort
                                                     ? bagsPage*sort
                                                     : trace?.bags.length}{" "}
-                                                of {trace?.bags.length} entries
+                                                {t("Of")}{trace?.bags.length} {t("Entries")}
                                                 </div>
                                                 <div
                                                     className="dataTables_paginate paging_simple_numbers"
@@ -1842,7 +1867,7 @@ const chartOptions_Purchase = {
                                                     bagsPage > 1 && setbagsPage(bagsPage - 1)
                                                     }
                                                 >
-                                                    Previous
+                                                    {t("Previous")}
                                                 </Link>
                                                 <Link
                                                     className="paginate_button next mx-4"
@@ -1851,7 +1876,7 @@ const chartOptions_Purchase = {
                                                         setbagsPage(bagsPage + 1)
                                                     }
                                                 >
-                                                    Next
+                                                    {t("Next")}
                                                 </Link>
                                                 </div>
                                             </div>
@@ -1993,18 +2018,18 @@ const chartOptions_Purchase = {
                                                     }
                                                     {
                                                         trace.processing.length === 0 ? <tr>
-                                                            <td colSpan={29}>The selected company does not have any processing to show.</td>
+                                                            <td colSpan={29}>{t("NoProcessing")}</td>
                                                         </tr> : <tr></tr>
                                                     }
                                                 </tbody>
                                             </Table>
                                             <div className="d-sm-flex text-center justify-content-between align-items-center mt-3">
                                                 <div className="dataTables_info">
-                                                Showing {(procPage-1) * sort + 1} to{" "}
+                                                {t("Showing")} {(procPage-1) * sort + 1} {t("To")}{" "}
                                                 {trace.processing.length > procPage * sort
                                                     ? procPage*sort
                                                     : trace.processing.length}{" "}
-                                                of {trace.processing.length} entries
+                                                {t("Of")} {trace.processing.length} {t("Entrier")}
                                                 </div>
                                                 <div
                                                     className="dataTables_paginate paging_simple_numbers"
@@ -2016,7 +2041,7 @@ const chartOptions_Purchase = {
                                                             procPage > 1 && setprocPage(procPage - 1)
                                                         }
                                                     >
-                                                        Previous
+                                                        {t("Previous")}
                                                     </Link>
                                                     <Link
                                                         className="paginate_button next mx-4"
@@ -2025,7 +2050,7 @@ const chartOptions_Purchase = {
                                                             setprocPage(procPage + 1)
                                                         }
                                                     >
-                                                        Next
+                                                        {t("Next")}
                                                     </Link>
                                                 </div>
                                             </div>
@@ -2093,18 +2118,18 @@ const chartOptions_Purchase = {
                                                         </tr>)
                                                     }{
                                                         trace?.bags_proc.length === 0 ? <tr>
-                                                            <td colSpan={24}>The selected company does not have any processed bags to show.</td>
+                                                            <td colSpan={24}>{t("NoProcessedBags")}</td>
                                                         </tr> : <tr></tr>
                                                     }
                                                 </tbody>
                                             </Table>
                                             <div className="d-sm-flex text-center justify-content-between align-items-center mt-3">
                                                 <div className="dataTables_info">
-                                                Showing {(bagsProcPage-1) * sort + 1} to{" "}
+                                                {t("Showing")} {(bagsProcPage-1) * sort + 1} {t("To")}{" "}
                                                 {trace?.bags_proc.length > bagsProcPage * sort
                                                     ? bagsProcPage*sort
                                                     : trace?.bags_proc.length}{" "}
-                                                of {trace?.bags_proc.length} entries
+                                                {t("Of")} {trace?.bags_proc.length} {t("Entries")}
                                                 </div>
                                                 <div
                                                     className="dataTables_paginate paging_simple_numbers"
@@ -2117,7 +2142,7 @@ const chartOptions_Purchase = {
                                                         bagsProcPage > 1 && setbagsProcPage(bagsProcPage - 1)
                                                     }
                                                 >
-                                                    Previous
+                                                    {t("Previous")}
                                                 </Link>
                                                 <Link
                                                     className="paginate_button next mx-4"
@@ -2126,7 +2151,7 @@ const chartOptions_Purchase = {
                                                         setbagsProcPage(bagsProcPage + 1)
                                                     }
                                                 >
-                                                    Next
+                                                    {t("Next")}
                                                 </Link>
                                                 </div>
                                             </div>
@@ -2158,14 +2183,15 @@ const chartOptions_Purchase = {
                                                             rowSpan={1}
                                                             colSpan={1}
                                                             style={{ width: 73 }}
+                                                            key={header} 
                                                             >
-                                                            {header}
+                                                           {t(header)}
                                                         </th>) }
                                                     </tr>
                                                     </thead>
                                                     <tbody>
                                                         { trace.blending['rows'].length === 0 ? <tr>
-                                                            <td colSpan={trace.blending['header'].length}>Company does not have any blending records to report on.</td> 
+                                                            <td colSpan={trace.blending['header'].length}>{t("NoBlendingRecords")}</td> 
                                                         </tr> :
                                                         trace.blending['rows'].map(row=><tr key={`blending-${row[0]}`}>{
                                                             row.map((field, i)=><td>
@@ -2232,18 +2258,18 @@ const chartOptions_Purchase = {
                                                         }
                                                         {
                                                             trace.drums.length === 0 ? <tr>
-                                                                <td colSpan={24}>The selected company does not have any drums to show.</td>
+                                                                <td colSpan={24}>{t("NoDrums")}</td>
                                                             </tr> : <tr></tr>
                                                         }
                                                 </tbody>
                                             </Table>
                                             <div className="d-sm-flex text-center justify-content-between align-items-center mt-3">
                                                 <div className="dataTables_info">
-                                                Showing {(drumsPage-1) * sort + 1} to{" "}
+                                                {t("Showing")} {(drumsPage-1) * sort + 1} {t("To")}{" "}
                                                 {trace.drums.length > drumsPage * sort
                                                     ? drumsPage*sort
                                                     : trace.drums.length}{" "}
-                                                of {trace.drums.length} entries
+                                               {t("Of")} {trace.drums.length} {t("Entries")}
                                                 </div>
                                                 <div
                                                     className="dataTables_paginate paging_simple_numbers"
@@ -2255,7 +2281,7 @@ const chartOptions_Purchase = {
                                                             drumsPage > 1 && setdrumsPage(drumsPage - 1)
                                                         }
                                                     >
-                                                        Previous
+                                                        {t("Previous")}
                                                     </Link>
                                                     <Link
                                                         className="paginate_button next mx-4"
@@ -2264,7 +2290,7 @@ const chartOptions_Purchase = {
                                                             setdrumsPage(drumsPage + 1)
                                                         }
                                                     >
-                                                        Next
+                                                        {t("Next")}
                                                     </Link>
                                                 </div>
                                             </div>
@@ -2276,7 +2302,7 @@ const chartOptions_Purchase = {
                             <Tab.Pane eventKey="purchase" id='purchase'>
                                 <div className='card'>
                                     <div className='card-header'>
-                                        <h4 className='card-title'>Purchase</h4>
+                                        <h4 className='card-title'>{t("Purchase")}</h4>
                                     </div>
                                     <div className='card-body'>
                                     {
@@ -2292,14 +2318,15 @@ const chartOptions_Purchase = {
                                                             rowSpan={1}
                                                             colSpan={1}
                                                             style={{ width: 73 }}
+                                                            key={header}
                                                             >
-                                                            {header}
+                                                            {t(header)}
                                                         </th>) }
                                                     </tr>
                                                     </thead>
                                                     <tbody>
                                                         { trace.purchases['rows'].length === 0 ? <tr>
-                                                            <td colSpan={trace.purchases['header'].length}>Company does not have any purchase records to report on.</td> 
+                                                            <td colSpan={trace.purchases['header'].length}>{t("NoPurchaseRecords")}</td> 
                                                         </tr> :
                                                         trace.purchases['rows'].map(row=><tr key={`purchase-${row[0]}`}>{
                                                             row.map((field, i)=><td>
@@ -2428,18 +2455,18 @@ const chartOptions_Purchase = {
                                                         }
                                                         {
                                                             trace.exports.length === 0 ? <tr>
-                                                                <td colSpan={24}>The selected company does not have any exports to show.</td>
+                                                                <td colSpan={24}>{t("NoExports")}</td>
                                                             </tr> : <tr></tr>
                                                         }
                                                 </tbody>
                                             </Table>
                                             <div className="d-sm-flex text-center justify-content-between align-items-center mt-3">
                                                 <div className="dataTables_info">
-                                                Showing {(exportsPage-1) * sort + 1} to{" "}
+                                                {t("Showing")} {(exportsPage-1) * sort + 1} {t("To")}{" "}
                                                 {(trace.exports.length > exportsPage * sort
                                                     ? exportsPage*sort
                                                     : trace.exports.length)}{" "}
-                                                of {trace.exports.length} entries
+                                                {t("Of")} {trace.exports.length} {t("Entries")}
                                                 </div>
                                                 <div
                                                     className="dataTables_paginate paging_simple_numbers"
@@ -2451,7 +2478,7 @@ const chartOptions_Purchase = {
                                                             exportsPage > 1 && setexportsPage(exportsPage - 1)
                                                         }
                                                     >
-                                                        Previous
+                                                        {t("Previous")}
                                                     </Link>
                                                     <Link
                                                         className="paginate_button next mx-4"
@@ -2460,7 +2487,7 @@ const chartOptions_Purchase = {
                                                             setexportsPage(exportsPage + 1)
                                                         }
                                                     >
-                                                        Next
+                                                        {t("Next")}
                                                     </Link>
                                                 </div>
                                             </div>

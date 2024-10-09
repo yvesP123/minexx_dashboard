@@ -64,10 +64,10 @@ const Mines = ({ language,country }) => {
                 if (err.response.code === 403) {
                     dispatch(Logout(navigate))
                 } else {
-                    toast.warn(err.response.message)
+                   // toast.warn(err.response.message)
                 }
             } catch (e) {
-                toast.error(err.message)
+                //toast.error(err.message)
             }
         }
     }
