@@ -1,25 +1,34 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
 import { Printer } from 'lucide-react';
-import logoImage from "../../../images/Minexx-Logo.png";
+import logoImage from "../../../images/minexx-196-blue.png";
+import approvedImage from "../../../images/stamp.svg";
+import logheader from "../../../images/Minexx-white.png";
 
 const QRCodeWithPrintButton = ({ value }) => {
     const [isHovered, setIsHovered] = useState(false);
     const qrRef = useRef(null);
     const [logoDataUrl, setLogoDataUrl] = useState('');
+    const [approvedDataUrl, setApprovedDataUrl] = useState('');
+    const [logHeaderDataUrl, setlogHeaderDataUrl] = useState('');
 
     useEffect(() => {
-        // Convert logo image to data URL
-        const img = new Image();
-        img.onload = () => {
-            const canvas = document.createElement('canvas');
-            canvas.width = img.width;
-            canvas.height = img.height;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(img, 0, 0);
-            setLogoDataUrl(canvas.toDataURL('image/png'));
+        const loadImage = (src, setDataUrl) => {
+            const img = new Image();
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0);
+                setDataUrl(canvas.toDataURL('image/png'));
+            };
+            img.src = src;
         };
-        img.src = logoImage;
+
+        loadImage(logoImage, setLogoDataUrl);
+        loadImage(approvedImage, setApprovedDataUrl);
+        loadImage(logheader, setlogHeaderDataUrl);
     }, []);
 
     const handlePrint = (e) => {
@@ -28,60 +37,145 @@ const QRCodeWithPrintButton = ({ value }) => {
         const svgElement = qrRef.current;
         if (svgElement) {
             const svgData = new XMLSerializer().serializeToString(svgElement);
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            const img = new Image();
-            img.onload = () => {
-                canvas.width = img.width;
-                canvas.height = img.height;
-                ctx.drawImage(img, 0, 0);
-                
-                // Draw logo in the center
-                const logoImg = new Image();
-                logoImg.onload = () => {
-                    const logoSize = canvas.width / 4; // Adjust size as needed
-                    const x = (canvas.width - logoSize) / 2;
-                    const y = (canvas.height - logoSize) / 2;
-                    ctx.drawImage(logoImg, x, y, logoSize, logoSize);
-                    
-                    const dataUrl = canvas.toDataURL('image/png');
-
-                    const printWindow = window.open('', '_blank');
-                    printWindow.document.write(`
-                        <html>
-                            <head>
-                                <title>Print QR Code</title>
-                                <style>
-                                    body {
-                                        display: flex;
-                                        justify-content: center;
-                                        align-items: center;
-                                        height: 100vh;
-                                        margin: 0;
-                                    }
-                                    img {
-                                        max-width: 100%;
-                                        max-height: 100%;
-                                    }
-                                </style>
-                            </head>
-                            <body>
-                                <img src="${dataUrl}" alt="QR Code with Logo"  width="50%"/>
-                            </body>
-                        </html>
-                    `);
-                    printWindow.document.close();
-                    
-                    const printImg = printWindow.document.querySelector('img');
-                    printImg.onload = () => {
-                        printWindow.focus();
-                        printWindow.print();
-                        printWindow.close();
-                    };
-                };
-                logoImg.src = logoDataUrl;
-            };
-            img.src = 'data:image/svg+xml;base64,' + btoa(svgData);
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`
+                <html>
+                    <head>
+                        <title>Print QR Code</title>
+                        <style>
+                            body {
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                height: 100vh;
+                                margin: 0;
+                                font-family: Arial, sans-serif;
+                                background-color: #f0f0f0;
+                            }
+                            .card {
+                                background-color: #00B7FF;
+                                width: 400px;
+                                padding: 120px;
+                                border-radius: 15px;
+                                color: white;
+                                text-align: center;
+                                position: relative;
+                                padding-top: 60px;
+                            }
+                            .logo {
+                                position: absolute;
+                                top: 60px;
+                                left: 50%;
+                                transform: translateX(-50%);
+                                width: 150px;
+                                height: 150px;
+                                background-color: #00B7FF;
+                                border-radius: 50%;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                z-index: 1;
+                            }
+                            .logo img {
+                                width: 150px;
+                                height: 150px;
+                            }
+                            .qr-container {
+                                background-color: white;
+                                padding: 120px;
+                                width: 240px;
+                                height: 240px;
+                                border-radius: 15px;
+                                display: flex;
+                                flex-direction: column;
+                                margin-left: -50px;
+                                margin-top: 60px;
+                            }
+                            .title {
+                                font-size: 32px;
+                                font-weight: bold;
+                                margin-bottom: 30px;
+                                color: #00B7FF;
+                            }
+                            .qr-code {
+                                margin-bottom: 30px;
+                                position: relative;
+                                display: inline-block;
+                                padding: 20px;
+                            }
+                            .qr-code::before,
+                            .qr-code::after,
+                            .qr-code > ::before,
+                            .qr-code > ::after {
+                                content: '';
+                                position: absolute;
+                                width: 20px;
+                                height: 20px;
+                                border-color: #00B7FF;
+                                border-style: solid;
+                            }
+                            .qr-code::before {
+                                top: 0;
+                                left: 0;
+                                border-width: 4px 0 0 4px;
+                            }
+                            .qr-code::after {
+                                top: 0;
+                                right: 0;
+                                border-width: 4px 4px 0 0;
+                            }
+                            .qr-code > ::before {
+                                bottom: 0;
+                                left: 0;
+                                border-width: 0 0 4px 4px;
+                            }
+                            .qr-code > ::after {
+                                bottom: 0;
+                                right: 0;
+                                border-width: 0 4px 4px 0;
+                            }
+                            .approved {
+                                margin-top: -80px;
+                                margin-left: -30px;
+                            }
+                            .approved img {
+                                width: 440px;
+                                height: auto;
+                            }
+                            @media print {
+                                body {
+                                    -webkit-print-color-adjust: exact;
+                                    print-color-adjust: exact;
+                                }
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <div class="card">
+                            <div class="logo">
+                                <img src="${logHeaderDataUrl}" alt="Minexx Logo">
+                            </div>
+                            <div class="qr-container">
+                                <div class="title">MINEXX CLUB</div>
+                                <div class="qr-code">
+                                    ${svgData}
+                                    <i></i>
+                                </div>
+                            </div>
+                            <div class="approved">
+                                <img src="${approvedDataUrl}" alt="Approved">
+                            </div>
+                        </div>
+                        <script>
+                            window.onload = () => {
+                                window.print();
+                                window.close();
+                            };
+                        </script>
+                    </body>
+                </html>
+            `);
+            printWindow.document.close();
         }
     };
 
@@ -93,11 +187,11 @@ const QRCodeWithPrintButton = ({ value }) => {
         >
             <QRCodeSVG
                 value={value}
-                size={128}
+                size={180}
                 bgColor={"#ffffff"}
-                fgColor={"#31a7e4"} // Changed to a blue color
+                fgColor={"#31a7e4"}
                 level={"M"}
-                includeMargin={true}
+                includeMargin={false}
                 imageSettings={{
                     src: logoImage,
                     x: undefined,
@@ -123,7 +217,7 @@ const QRCodeWithPrintButton = ({ value }) => {
                         cursor: 'pointer',
                     }}
                 >
-                    <Printer size={24} color="#3B82F6" /> {/* Changed to match QR code color */}
+                    <Printer size={24} color="#00B7FF" />
                 </button>
             )}
         </div>
