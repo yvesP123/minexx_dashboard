@@ -293,6 +293,8 @@ legal and regulatory provisions governing gold panning activities, in particular
                                             { access === 'gold' ? <Nav.Item as="li" className="nav-item">
                                                 <Nav.Link className="nav-link px-2 px-lg-3" to="#miners" role="tab" eventKey="miners">
                                                     Miners
+
+
                                                 </Nav.Link>
                                             </Nav.Item> : <div></div> }
                                         </Nav>
@@ -430,7 +432,7 @@ legal and regulatory provisions governing gold panning activities, in particular
                                                     role="grid"
                                                     aria-describedby="example5_info"
                                                 >
-                                                    <thead>
+                                                    <thead> 
                                                     <tr role="row">
                                                         { minersHeader.filter(h=>h!=='ID' && h!=='Mine/Concession Name' && !ignoreHeaders.includes(h)).map(header=><th
                                                             className="sorting"
@@ -439,14 +441,15 @@ legal and regulatory provisions governing gold panning activities, in particular
                                                             rowSpan={1}
                                                             colSpan={1}
                                                             style={{ width: 73 }}
+                                                            key={header}
                                                             >
-                                                            {header}
+                                                            {t(header)}
                                                         </th>) }
                                                     </tr>
                                                     </thead>
                                                     <tbody>
                                                         { miners.length === 0 ? <tr>
-                                                            <td colSpan={minersHeader.length}>Mine does not have any miners on record.</td> 
+                                                            <td colSpan={minersHeader.length}>{t("Mine does not have any miners on record.")}</td> 
                                                         </tr> :
                                                         miners.map(miner=><tr key={`miner-${miner[0]}`}>{
                                                             miner.filter((x,y)=>y!==minersHeader.indexOf('ID') && y!==minersHeader.indexOf('Mine/Concession Name') && 
