@@ -991,6 +991,15 @@ const chartOptions_Purchase = {
                                         >
                                             <Link
                                                 className="paginate_button previous disabled"
+                                                style={{
+                                                    minWidth: '120px',  // Adjust this value as needed
+                                                    whiteSpace: 'nowrap',
+                                                    overflow: 'hidden',
+                                                    textOverflow: 'ellipsis',
+                                                    padding: '8px 12px',  // Adjust padding to your preference
+                                                    display: 'inline-block',
+                                                    textAlign: 'center'
+                                                }}
                                                 to="/reports"
                                                 onClick={() =>
                                                     activePag.current > 0 &&
@@ -1862,6 +1871,15 @@ const chartOptions_Purchase = {
                                                 >
                                                 <Link
                                                     className="paginate_button previous disabled"
+                                                    style={{
+                                                        minWidth: '120px',  // Adjust this value as needed
+                                                        whiteSpace: 'nowrap',
+                                                        overflow: 'hidden',
+                                                        textOverflow: 'ellipsis',
+                                                        padding: '8px 12px',  // Adjust padding to your preference
+                                                        display: 'inline-block',
+                                                        textAlign: 'center'
+                                                    }}
                                                     // to="/reviews"
                                                     onClick={() =>
                                                     bagsPage > 1 && setbagsPage(bagsPage - 1)
@@ -2035,14 +2053,21 @@ const chartOptions_Purchase = {
                                                     className="dataTables_paginate paging_simple_numbers"
                                                     id="example2_paginate"
                                                 >
-                                                    <Link
-                                                        className="paginate_button previous disabled"
-                                                        onClick={() =>
-                                                            procPage > 1 && setprocPage(procPage - 1)
-                                                        }
-                                                    >
-                                                        {t("Previous")}
-                                                    </Link>
+                                                <Link
+                                                    className="paginate_button previous disabled"
+                                                    style={{
+                                                        minWidth: '120px',  // Adjust this value as needed
+                                                        whiteSpace: 'nowrap',
+                                                        overflow: 'hidden',
+                                                        textOverflow: 'ellipsis',
+                                                        padding: '8px 12px',  // Adjust padding to your preference
+                                                        display: 'inline-block',
+                                                        textAlign: 'center'
+                                                    }}
+                                                    onClick={() => drumsPage > 1 && setdrumsPage(drumsPage - 1)}
+                                                >
+                                                    {t("Previous")}
+                                                </Link>
                                                     <Link
                                                         className="paginate_button next mx-4"
                                                         onClick={() =>
@@ -2137,6 +2162,15 @@ const chartOptions_Purchase = {
                                                 >
                                                 <Link
                                                     className="paginate_button previous disabled"
+                                                    style={{
+                                                        minWidth: '120px',  // Adjust this value as needed
+                                                        whiteSpace: 'nowrap',
+                                                        overflow: 'hidden',
+                                                        textOverflow: 'ellipsis',
+                                                        padding: '8px 12px',  // Adjust padding to your preference
+                                                        display: 'inline-block',
+                                                        textAlign: 'center'
+                                                    }}
                                                     // to="/reviews"
                                                     onClick={() =>
                                                         bagsProcPage > 1 && setbagsProcPage(bagsProcPage - 1)
@@ -2277,6 +2311,16 @@ const chartOptions_Purchase = {
                                                 >
                                                     <Link
                                                         className="paginate_button previous disabled"
+                                                        style={{
+                                                            minWidth: '120px',  // Adjust this value as needed
+                                                            whiteSpace: 'nowrap',
+                                                            overflow: 'hidden',
+                                                            textOverflow: 'ellipsis',
+                                                            padding: '8px 12px',  // Adjust padding to your preference
+                                                            display: 'inline-block',
+                                                            textAlign: 'center'
+                                                        }}
+                                                        
                                                         onClick={() =>
                                                             drumsPage > 1 && setdrumsPage(drumsPage - 1)
                                                         }
@@ -2474,6 +2518,15 @@ const chartOptions_Purchase = {
                                                 >
                                                     <Link
                                                         className="paginate_button previous disabled"
+                                                        style={{
+                                                            minWidth: '120px',  // Adjust this value as needed
+                                                            whiteSpace: 'nowrap',
+                                                            overflow: 'hidden',
+                                                            textOverflow: 'ellipsis',
+                                                            padding: '8px 12px',  // Adjust padding to your preference
+                                                            display: 'inline-block',
+                                                            textAlign: 'center'
+                                                        }}
                                                         onClick={() =>
                                                             exportsPage > 1 && setexportsPage(exportsPage - 1)
                                                         }

@@ -54,7 +54,8 @@ const QRCodeWithPrintButton = ({ value }) => {
                             }
                             .card {
                                 background-color: #00B7FF;
-                                width: 400px;
+                                width: 450px;
+                                height: 670px;
                                 padding: 120px;
                                 border-radius: 15px;
                                 color: white;
@@ -65,10 +66,10 @@ const QRCodeWithPrintButton = ({ value }) => {
                             .logo {
                                 position: absolute;
                                 top: 60px;
-                                left: 50%;
+                                left: 48%;
                                 transform: translateX(-50%);
-                                width: 150px;
-                                height: 150px;
+                                width: 170px;
+                                height: 170px;
                                 background-color: #00B7FF;
                                 border-radius: 50%;
                                 display: flex;
@@ -77,14 +78,14 @@ const QRCodeWithPrintButton = ({ value }) => {
                                 z-index: 1;
                             }
                             .logo img {
-                                width: 150px;
-                                height: 150px;
+                                width: 170px;
+                                height: 170px;
                             }
                             .qr-container {
                                 background-color: white;
                                 padding: 120px;
-                                width: 240px;
-                                height: 240px;
+                                width: 280px;
+                                height: 290px;
                                 border-radius: 15px;
                                 display: flex;
                                 flex-direction: column;
@@ -92,16 +93,20 @@ const QRCodeWithPrintButton = ({ value }) => {
                                 margin-top: 60px;
                             }
                             .title {
-                                font-size: 32px;
+                                font-size: 40px;
                                 font-weight: bold;
-                                margin-bottom: 30px;
+                                margin-bottom: 25px;
                                 color: #00B7FF;
                             }
                             .qr-code {
                                 margin-bottom: 30px;
                                 position: relative;
                                 display: inline-block;
-                                padding: 20px;
+                                padding: 25px;
+                            }
+                            .qr-code svg {
+                                width: 240px !important;
+                                height: 240px !important;
                             }
                             .qr-code::before,
                             .qr-code::after,
@@ -109,37 +114,37 @@ const QRCodeWithPrintButton = ({ value }) => {
                             .qr-code > ::after {
                                 content: '';
                                 position: absolute;
-                                width: 20px;
-                                height: 20px;
+                                width: 30px;
+                                height: 30px;
                                 border-color: #00B7FF;
                                 border-style: solid;
                             }
                             .qr-code::before {
                                 top: 0;
                                 left: 0;
-                                border-width: 4px 0 0 4px;
+                                border-width: 6px 0 0 6px;
                             }
                             .qr-code::after {
                                 top: 0;
                                 right: 0;
-                                border-width: 4px 4px 0 0;
+                                border-width: 6px 6px 0 0;
                             }
                             .qr-code > ::before {
                                 bottom: 0;
                                 left: 0;
-                                border-width: 0 0 4px 4px;
+                                border-width: 0 0 6px 6px;
                             }
                             .qr-code > ::after {
                                 bottom: 0;
                                 right: 0;
-                                border-width: 0 4px 4px 0;
+                                border-width: 0 6px 6px 0;
                             }
                             .approved {
-                                margin-top: -80px;
+                                margin-top: -50px;
                                 margin-left: -30px;
                             }
                             .approved img {
-                                width: 440px;
+                                width: 490px;
                                 height: auto;
                             }
                             @media print {

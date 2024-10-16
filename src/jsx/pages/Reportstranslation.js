@@ -486,7 +486,7 @@ export const translations = {
         To: "à",
         Of: "de",
         Entries: "entrées",
-        Previous: "précédent",
+        Previous: "Précédent",
         Next: "suivant",
         NoSelected: "L'entreprise sélectionnée n'a aucun sac produit à afficher.",
         NoExports: "L'entreprise sélectionnée n'a aucune exportation à afficher.",
