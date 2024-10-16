@@ -161,7 +161,7 @@ const Exports = ({ language, country }) => {
                                             : <tbody>
                                             {filtered.length === 0 ?
                                                 <tr role="row" className="odd">
-                                                    <td colSpan={9} className="sorting_1 text-center">No export records to display yet.</td>
+                                                    <td colSpan={9} className="sorting_1 text-center">{t('NoExportRecords')}</td>
                                                 </tr>
                                                 : filtered.map(_export => (
                                                     <tr role="row" key={_export.id} className="odd">
