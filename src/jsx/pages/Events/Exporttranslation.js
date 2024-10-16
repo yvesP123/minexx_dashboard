@@ -52,7 +52,8 @@ export const translations = {
     NoDocumentToDisplay: "There is no document to display",
     NumberOfTags: "Number of Tags",
     ShipmentTracking: "Shipment Tracking",
-    TransportDetails: "Transport Details"
+    TransportDetails: "Transport Details",
+     NoExportRecords: "No export records to display yet"
   },
   fr: {
     SearchforExports: "Recherche de l'exportation",
@@ -105,6 +106,7 @@ export const translations = {
     NoDocumentToDisplay: "Il n'y a pas de document à afficher",
     NumberOfTags: "Nombre d'étiquettes",
      ShipmentTracking: "Suivi de l'expédition",
-    TransportDetails: "Détails du transport"
+    TransportDetails: "Détails du transport",
+     NoExportRecords: "Aucun enregistrement d'exportation à afficher pour le moment"
   }
 };
